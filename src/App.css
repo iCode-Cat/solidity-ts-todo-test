@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+html {
+  font-size: 62.4%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+}
+
+.global-pd {
+  padding: 0 2.4rem 0 2.6rem;
+}
