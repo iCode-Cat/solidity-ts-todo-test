@@ -36,24 +36,34 @@ const controls = [
   },
 ];
 
-const Controls = () => {
+const Controls = ({ completedExists }: any) => {
   const theme = useContext(ThemeContext);
   const [controlStatus, setControlStatus] = useContext(ControlContext);
+  console.log(completedExists);
 
   return (
     <Wrapper theme={theme}>
-      {controls.map((a) => (
-        <p
-          style={{
-            color:
-              controlStatus === a.name ? theme.labelActive : theme.labelPassive,
-          }}
-          onClick={() => setControlStatus(a.name)}
-          key={a.id}
-        >
-          {a.name}
-        </p>
-      ))}
+      {controls
+        .filter((cf) => {
+          if (!completedExists) {
+            return cf.name !== 'Completed';
+          }
+          return cf;
+        })
+        .map((a) => (
+          <p
+            style={{
+              color:
+                controlStatus === a.name
+                  ? theme.labelActive
+                  : theme.labelPassive,
+            }}
+            onClick={() => setControlStatus(a.name)}
+            key={a.id}
+          >
+            {a.name}
+          </p>
+        ))}
     </Wrapper>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from '../theme-context';
+import { mediaQuery } from '../MediaQuery';
 
 const Wrapper = styled.div`
   position: relative;
@@ -10,12 +11,24 @@ const Wrapper = styled.div`
     left: 20px;
     z-index: 3;
   }
+  @media (min-width: ${mediaQuery.web}) {
+    img {
+      left: 24px;
+      width: 24px;
+      bottom: 12px;
+    }
+  }
 `;
 
 const InputStyle = styled.input`
   width: 100%;
   height: 48px;
   position: relative;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 12px;
+  letter-spacing: -0.16px;
+
   z-index: 2;
   margin-top: 10.8rem;
   border-radius: 5px;
@@ -25,6 +38,12 @@ const InputStyle = styled.input`
   color: ${(props) => props.theme.inputText};
   ::placeholder {
     color: ${(props) => props.theme.inputText};
+  }
+  @media (min-width: ${mediaQuery.web}) {
+    font-size: 1.8rem;
+    padding: 2.3rem 7.2rem;
+    line-height: 18px;
+    letter-spacing: -0.25px;
   }
 `;
 

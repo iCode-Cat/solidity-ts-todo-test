@@ -21,3 +21,9 @@ body {
 .global-pd {
   padding: 0 2.4rem 0 2.6rem;
 }
+
+@media (min-width: 550px) {
+  .global-pd {
+    padding: 0;
+  }
+}

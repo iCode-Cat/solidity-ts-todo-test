@@ -16,6 +16,10 @@ const Wrapper = styled.div`
   position: relative;
   background: ${(props) => props.theme.topbg};
   min-height: 100vh;
+  .todo-wrapper {
+    margin: 0 auto;
+    max-width: 540px;
+  }
 `;
 
 declare global {
@@ -202,7 +206,7 @@ function App() {
                 todos={todos}
                 removeTodo={removeTodo}
               />
-              <Controls />
+              <Controls completedExists={todos.find((to) => to.completed)} />
             </div>
           </Wrapper>
         </ControlContext.Provider>
