@@ -44,7 +44,7 @@ const Todo = ({
         column='0fr 1fr 0fr'
         align='center'
         gap='12px'
-        padding='1.6rem 2rem'
+        padding='1.6rem 2.2rem'
         theme={theme}
       >
         {completed ? (

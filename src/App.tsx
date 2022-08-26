@@ -9,6 +9,8 @@ import { ThemeContext, themes, HandleTheme } from './theme-context';
 
 import './App.css';
 import Todos from './Components/Todos';
+import Controls from './Components/Controls';
+import { ControlContext } from './control-context';
 
 const Wrapper = styled.div`
   position: relative;
@@ -34,6 +36,9 @@ function App() {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [theme, setTheme] = useState(themes.light);
   const [init, setInit] = useState(false);
+  const [controlStatus, setControlStatus] = useState<
+    'All' | 'Active' | 'Completed'
+  >('All');
   const dispatch = useNotification();
 
   const handleTheme = () => {
@@ -187,17 +192,20 @@ function App() {
   return (
     <ThemeContext.Provider value={theme}>
       <HandleTheme.Provider value={handleTheme}>
-        <Wrapper theme={theme}>
-          <Header />
-          <div className='todo-wrapper global-pd'>
-            <Input addTodo={addTodo} />
-            <Todos
-              updateTodoStatus={updateTodoStatus}
-              todos={todos}
-              removeTodo={removeTodo}
-            />
-          </div>
-        </Wrapper>
+        <ControlContext.Provider value={[controlStatus, setControlStatus]}>
+          <Wrapper theme={theme}>
+            <Header />
+            <div className='todo-wrapper global-pd'>
+              <Input addTodo={addTodo} />
+              <Todos
+                updateTodoStatus={updateTodoStatus}
+                todos={todos}
+                removeTodo={removeTodo}
+              />
+              <Controls />
+            </div>
+          </Wrapper>
+        </ControlContext.Provider>
       </HandleTheme.Provider>
     </ThemeContext.Provider>
   );
