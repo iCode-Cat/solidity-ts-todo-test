@@ -37,7 +37,7 @@ const Container = styled.div`
 const Header = () => {
   const theme = useContext(ThemeContext);
   const handleTheme = useContext(HandleTheme);
-  console.log(theme);
+
   return (
     <Wrapper
       className='global-pd'

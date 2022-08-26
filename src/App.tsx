@@ -53,11 +53,9 @@ function App() {
       const accounts = await ethereum.request({
         method: 'eth_requestAccounts',
       });
-      console.log('Connected', accounts[0]);
+
       setCurrentAccount(accounts[0]);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const handleNewNotification = (text: string) => {
@@ -73,9 +71,7 @@ function App() {
   const removeTodo = async (index: number) => {
     const { ethereum } = window;
     if (!ethereum) {
-      console.log('Make sure you have metamask!');
     } else {
-      console.log('We have the ethereum object', ethereum);
     }
 
     try {
@@ -88,20 +84,16 @@ function App() {
       );
       const removeItem = await contract.removeTodo(index);
       await removeItem.wait();
-      console.log('Removed item', removeItem);
+
       handleNewNotification('Item removed.');
       setTodos([]);
-    } catch (error) {
-      console.log('error');
-    }
+    } catch (error) {}
   };
 
   const getTodos = async () => {
     const { ethereum } = window;
     if (!ethereum) {
-      console.log('Make sure you have metamask!');
     } else {
-      console.log('We have the ethereum object', ethereum);
     }
 
     try {
@@ -116,7 +108,6 @@ function App() {
       setInit(true);
       setTodos([]);
       todos.forEach((arr: any, index: any) => {
-        console.log(index);
         if (Number(arr.owner) === Number(currentAccount)) {
           setTodos((prev) => [
             ...prev,
@@ -132,14 +123,10 @@ function App() {
       if (!init) {
         handleNewNotification('Todos fetched');
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const updateTodoStatus = async (status: boolean, id: string) => {
-    console.log(id);
-
     const { ethereum } = window;
     if (!ethereum) {
       return alert('Get metamask');
@@ -155,14 +142,11 @@ function App() {
       const todoStatus = await contract.updateTodoStatus(Number(id), status, {
         gasLimit: 300000,
       });
-      console.log('Mining...', todoStatus.hash);
+
       await todoStatus.wait();
       getTodos();
-      console.log('Mined.', todoStatus.hash);
       handleNewNotification('Status Updated!');
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const addTodo = async (todo: string) => {
@@ -181,14 +165,10 @@ function App() {
       const addTodo = await contract.addTodo(todo, {
         gasLimit: 300000,
       });
-      console.log('Mining...', addTodo.hash);
       await addTodo.wait();
       getTodos();
-      console.log('Mined.', addTodo.hash);
       handleNewNotification('Todo Added!');
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -200,8 +180,6 @@ function App() {
       getTodos();
     }
   }, [currentAccount]);
-
-  console.log(currentAccount);
 
   if (!currentAccount) {
     return <button onClick={connectWallet}>CONNECT</button>;

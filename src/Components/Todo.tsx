@@ -8,8 +8,8 @@ interface Props {
 }
 
 const Wrapper = styled.div<Props>`
-  color: ${(props) => props.theme.todo};
-  border-bottom: 1px solid ${(props) => props.theme.border};
+  color: ${(props: any) => props.theme.todo};
+  border-bottom: 1px solid ${(props: any) => props.theme.border};
   font-size: 1.2rem;
   line-height: 12px;
   font-weight: 400;
