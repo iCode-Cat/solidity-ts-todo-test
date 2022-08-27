@@ -222,6 +222,7 @@ function App() {
     <ThemeContext.Provider value={theme}>
       <HandleTheme.Provider value={handleTheme}>
         <ControlContext.Provider value={[controlStatus, setControlStatus]}>
+          {loading && <p className='loading'>MINTING...</p>}
           <Wrapper
             style={{
               opacity: loading ? '0.5' : '1',
