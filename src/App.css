@@ -22,6 +22,15 @@ body {
   padding: 0 2.4rem 0 2.6rem;
 }
 
+.connect {
+  border: 0;
+  outline: none;
+  background: #333;
+  color: #fff;
+  padding: 2rem 4rem;
+  cursor: pointer;
+}
+
 @media (min-width: 550px) {
   .global-pd {
     padding: 0;

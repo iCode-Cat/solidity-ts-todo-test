@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   position: relative;
   background: ${(props) => props.theme.topbg};
   min-height: 100vh;
+
   .todo-wrapper {
     margin: 0 auto;
     max-width: 540px;
@@ -197,7 +198,11 @@ function App() {
   }, [currentAccount]);
 
   if (!currentAccount) {
-    return <button onClick={connectWallet}>CONNECT</button>;
+    return (
+      <button className='connect' onClick={connectWallet}>
+        CONNECT
+      </button>
+    );
   }
   return (
     <ThemeContext.Provider value={theme}>
