@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ControlContext } from '../control-context';
+import { mediaQuery } from '../MediaQuery';
 import { Column } from '../styles/Column';
 import { ThemeContext } from '../theme-context';
+import Controls from './Controls';
 import Todo from './Todo';
 
 const Wrapper = styled.div`
@@ -15,12 +17,34 @@ const Wrapper = styled.div`
   box-shadow: ${(props) => props.theme.boxShadow};
   border-radius: 5px;
   overflow: hidden;
+  .clear {
+    cursor: pointer;
+  }
+  .todo_controls {
+    display: none;
+  }
   .todo_info {
     font-size: 1.2rem;
     color: ${(props) => props.theme.labelPassive};
     font-weight: 400;
     line-height: 12px;
     letter-spacing: -0.17px;
+  }
+  @media (min-width: ${mediaQuery.web}) {
+    margin-top: 2.4rem;
+    .todo_info {
+      grid-template-columns: repeat(3, auto);
+      justify-items: center;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.6rem 2.4rem;
+    }
+    .todo_controls {
+      display: grid;
+    }
+    .clear:hover {
+      color: ${(props) => props.theme.labelHover} !important;
+    }
   }
 `;
 
@@ -75,7 +99,11 @@ const Todos = ({ todos, updateTodoStatus, removeTodo }: ITodos) => {
         theme={theme}
       >
         <p>{todos.length} items left</p>
-        <p>Clear Completed</p>
+        <Controls
+          className='todo_controls'
+          completedExists={todos.find((to) => to.completed)}
+        />
+        <p className='clear'>Clear Completed</p>
       </Column>
     </Wrapper>
   );

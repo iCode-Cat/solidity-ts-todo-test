@@ -11,6 +11,7 @@ import './App.css';
 import Todos from './Components/Todos';
 import Controls from './Components/Controls';
 import { ControlContext } from './control-context';
+import { mediaQuery } from './MediaQuery';
 
 const Wrapper = styled.div`
   position: relative;
@@ -19,6 +20,11 @@ const Wrapper = styled.div`
   .todo-wrapper {
     margin: 0 auto;
     max-width: 540px;
+  }
+  @media (min-width: ${mediaQuery.web}) {
+    .control_mob {
+      display: none;
+    }
   }
 `;
 
@@ -206,7 +212,10 @@ function App() {
                 todos={todos}
                 removeTodo={removeTodo}
               />
-              <Controls completedExists={todos.find((to) => to.completed)} />
+              <Controls
+                className='control_mob'
+                completedExists={todos.find((to) => to.completed)}
+              />
             </div>
           </Wrapper>
         </ControlContext.Provider>

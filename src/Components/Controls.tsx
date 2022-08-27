@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ControlContext } from '../control-context';
+import { mediaQuery } from '../MediaQuery';
 import { ThemeContext } from '../theme-context';
 
 const Wrapper = styled.div`
@@ -19,6 +20,17 @@ const Wrapper = styled.div`
   letter-spacing: -0.19px;
   font-weight: 700;
   border-radius: 6px;
+  transition: color 0.3s !important;
+  p {
+    cursor: pointer;
+  }
+  @media (min-width: ${mediaQuery.web}) {
+    margin-top: 0;
+    padding: 0;
+    p:hover {
+      color: ${(props) => props.theme.labelHover} !important;
+    }
+  }
 `;
 
 const controls = [
@@ -36,13 +48,12 @@ const controls = [
   },
 ];
 
-const Controls = ({ completedExists }: any) => {
+const Controls = ({ completedExists, className }: any) => {
   const theme = useContext(ThemeContext);
   const [controlStatus, setControlStatus] = useContext(ControlContext);
-  console.log(completedExists);
 
   return (
-    <Wrapper theme={theme}>
+    <Wrapper className={className} theme={theme}>
       {controls
         .filter((cf) => {
           if (!completedExists) {

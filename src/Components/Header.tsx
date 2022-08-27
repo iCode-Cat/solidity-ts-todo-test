@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { mediaQuery } from '../MediaQuery';
 import { ThemeContext, HandleTheme } from '../theme-context';
 
 interface Props {
@@ -14,7 +15,7 @@ const Wrapper = styled.header<Props>`
   background-size: cover;
   position: absolute;
   z-index: 1;
-  padding-top: 4.8rem;
+  padding-top: 7rem;
   .header {
     &_text {
       width: 100%;
@@ -22,7 +23,20 @@ const Wrapper = styled.header<Props>`
     }
     &_icon {
       width: 100%;
-      max-width: 19.32px;
+      max-width: 26px;
+      cursor: pointer;
+    }
+  }
+  @media (min-width: ${mediaQuery.web}) {
+    height: 300px;
+    .header {
+      &_text {
+        max-width: 167px !important;
+      }
+      &_icon {
+        width: 26px !important;
+        cursor: pointer;
+      }
     }
   }
 `;

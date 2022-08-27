@@ -1,3 +1,3 @@
 export const mediaQuery = {
-  web: '30em',
+  web: '50em',
 };

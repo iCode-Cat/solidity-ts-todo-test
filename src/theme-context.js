@@ -13,6 +13,7 @@ export const themes = {
     labelHover: '#494C6B',
     boxShadow: '0px 35px 50px -15px #C2C3D680',
     border: '#E3E4F1',
+    typing: '#393A4B',
   },
   dark: {
     mode: 'dark',
@@ -27,6 +28,7 @@ export const themes = {
     labelHover: '#E3E4F1',
     boxShadow: '0px 35px 50px -15px #00000080',
     border: '#393A4B',
+    typing: '#C8CBE7',
   },
 };
 

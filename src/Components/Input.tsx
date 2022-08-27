@@ -5,6 +5,7 @@ import { mediaQuery } from '../MediaQuery';
 
 const Wrapper = styled.div`
   position: relative;
+
   img {
     position: absolute;
     bottom: 14px;
@@ -15,7 +16,7 @@ const Wrapper = styled.div`
     img {
       left: 24px;
       width: 24px;
-      bottom: 12px;
+      bottom: 20px;
     }
   }
 `;
@@ -35,11 +36,13 @@ const InputStyle = styled.input`
   border: 0;
   background: ${(props) => props.theme};
   padding: 1.4rem 5.2rem;
-  color: ${(props) => props.theme.inputText};
+  color: ${(props) => props.theme.typing};
   ::placeholder {
     color: ${(props) => props.theme.inputText};
   }
   @media (min-width: ${mediaQuery.web}) {
+    margin-top: 15.8rem;
+    height: 64px;
     font-size: 1.8rem;
     padding: 2.3rem 7.2rem;
     line-height: 18px;
