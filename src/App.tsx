@@ -47,6 +47,7 @@ function App() {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [theme, setTheme] = useState(themes.light);
   const [init, setInit] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [controlStatus, setControlStatus] = useState<
     'All' | 'Active' | 'Completed'
   >('All');
@@ -91,6 +92,7 @@ function App() {
     }
 
     try {
+      setLoading(true);
       const provider = new ethers.providers.Web3Provider(ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
@@ -103,7 +105,10 @@ function App() {
 
       handleNewNotification('Item removed.');
       setTodos([]);
-    } catch (error) {}
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   const getTodos = async () => {
@@ -148,6 +153,7 @@ function App() {
       return alert('Get metamask');
     }
     try {
+      setLoading(true);
       const provider = new ethers.providers.Web3Provider(ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
@@ -160,9 +166,12 @@ function App() {
       });
 
       await todoStatus.wait();
+      setLoading(false);
       getTodos();
       handleNewNotification('Status Updated!');
-    } catch (error) {}
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   const addTodo = async (todo: string) => {
@@ -171,6 +180,7 @@ function App() {
       return alert('Get metamask');
     }
     try {
+      setLoading(true);
       const provider = new ethers.providers.Web3Provider(ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
@@ -182,9 +192,12 @@ function App() {
         gasLimit: 300000,
       });
       await addTodo.wait();
+      setLoading(false);
       getTodos();
       handleNewNotification('Todo Added!');
-    } catch (error) {}
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -204,11 +217,18 @@ function App() {
       </button>
     );
   }
+
   return (
     <ThemeContext.Provider value={theme}>
       <HandleTheme.Provider value={handleTheme}>
         <ControlContext.Provider value={[controlStatus, setControlStatus]}>
-          <Wrapper theme={theme}>
+          <Wrapper
+            style={{
+              opacity: loading ? '0.5' : '1',
+              pointerEvents: loading ? 'none' : 'unset',
+            }}
+            theme={theme}
+          >
             <Header />
             <div className='todo-wrapper global-pd'>
               <Input addTodo={addTodo} />
