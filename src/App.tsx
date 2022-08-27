@@ -102,7 +102,7 @@ function App() {
       );
       const removeItem = await contract.removeTodo(index);
       await removeItem.wait();
-
+      getTodos();
       handleNewNotification('Item removed.');
       setTodos([]);
       setLoading(false);

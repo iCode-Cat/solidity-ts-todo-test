@@ -35,6 +35,9 @@ const Wrapper = styled.div<Props>`
         .close {
           visibility: visible;
         }
+        p {
+          color: ${(props) => props.theme.labelHover} !important;
+        }
       }
     }
   }
@@ -92,7 +95,7 @@ const Todo = ({
         <img
           src={theme.mode === 'light' ? '/close-light.svg' : '/close-dark.svg'}
           alt='icon'
-          onClick={() => removeTodo(id)}
+          onClick={() => removeTodo(index)}
           className='close'
         />
       </Column>

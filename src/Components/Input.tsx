@@ -11,6 +11,7 @@ const Wrapper = styled.div`
     bottom: 14px;
     left: 20px;
     z-index: 3;
+    cursor: pointer;
   }
   @media (min-width: ${mediaQuery.web}) {
     img {
