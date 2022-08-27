@@ -38,6 +38,7 @@ const Wrapper = styled.div`
       justify-content: space-between;
       align-items: center;
       padding: 1.6rem 2.4rem;
+      font-size: 1.4rem;
     }
     .todo_controls {
       display: grid;
