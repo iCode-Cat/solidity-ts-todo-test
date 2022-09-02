@@ -82,7 +82,7 @@ function App() {
       owner: '0x',
     },
   ]);
-  const [theme, setTheme] = useState(themes.light);
+  const [theme, setTheme] = useState(themes.dark);
   const [init, setInit] = useState(false);
   const [loading, setLoading] = useState(false);
   const [controlStatus, setControlStatus] = useState<
