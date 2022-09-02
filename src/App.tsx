@@ -44,7 +44,44 @@ interface ITodo {
 
 function App() {
   const [currentAccount, setCurrentAccount] = useState('');
-  const [todos, setTodos] = useState<ITodo[]>([]);
+  const [todos, setTodos] = useState<ITodo[]>([
+    {
+      completed: true,
+      id: '0',
+      todo: 'Complete online JavaScript course',
+      owner: '0x',
+    },
+    {
+      completed: false,
+      id: '1',
+      todo: 'Jog around the park 10x',
+      owner: '0x',
+    },
+    {
+      completed: false,
+      id: '1',
+      todo: '20 minutes meditation',
+      owner: '0x',
+    },
+    {
+      completed: false,
+      id: '1',
+      todo: 'Read for 10 hours',
+      owner: '0x',
+    },
+    {
+      completed: false,
+      id: '1',
+      todo: 'Pick up groceries',
+      owner: '0x',
+    },
+    {
+      completed: false,
+      id: '1',
+      todo: 'Complete Todo App on Web3',
+      owner: '0x',
+    },
+  ]);
   const [theme, setTheme] = useState(themes.light);
   const [init, setInit] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -64,7 +101,7 @@ function App() {
   const connectWallet = async () => {
     const { ethereum } = window;
     if (!ethereum) {
-      return alert('Get metamask');
+      // return alert('Get metamask');
     }
     try {
       const accounts = await ethereum.request({
@@ -150,7 +187,7 @@ function App() {
   const updateTodoStatus = async (status: boolean, id: string) => {
     const { ethereum } = window;
     if (!ethereum) {
-      return alert('Get metamask');
+      // return alert('Get metamask');
     }
     try {
       setLoading(true);
@@ -177,7 +214,7 @@ function App() {
   const addTodo = async (todo: string) => {
     const { ethereum } = window;
     if (!ethereum) {
-      return alert('Get metamask');
+      // return alert('Get metamask');
     }
     try {
       setLoading(true);
@@ -210,7 +247,7 @@ function App() {
     }
   }, [currentAccount]);
 
-  if (!currentAccount) {
+  if (currentAccount) {
     return (
       <button className='connect' onClick={connectWallet}>
         CONNECT
